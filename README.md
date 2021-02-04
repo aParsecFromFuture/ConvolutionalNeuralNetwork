@@ -95,7 +95,7 @@ Convolutional neural network from scratch with handwritten digit recognition exa
 Internal Covariate Shift. Google, 1600 Amphitheatre Pkwy, Mountain View, CA 94043.
 
 * Frederik Kratzert (Feb 12, 2016). Understanding the backward pass through Batch Normalization Layer. 
-https://kratzert.github.io/2016/02/12/understanding-the-gradient-flow-through-the-batch-normalization-layer.html.
+https://kratzert.github.io/2016/02/12/understanding-the-gradient-flow-through-the-batch-normalization-layer.html
 
 * Pierre Jaumier (Jul 10, 2019). Backpropagation in a convolutional layer.
 https://towardsdatascience.com/backpropagation-in-a-convolutional-layer-24c8d64d8509
