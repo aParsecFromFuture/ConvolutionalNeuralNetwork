@@ -80,3 +80,23 @@ Convolutional neural network from scratch with handwritten digit recognition exa
 ### Backpropagation
 
 ![alt text](github%20resource/b_output.png)
+
+### References
+
+* Sergey Ioffe and Christian Szegedy. Batch Normalization: Accelerating Deep Network Training by Reducing
+Internal Covariate Shift. Google, 1600 Amphitheatre Pkwy, Mountain View, CA 94043.
+
+* Frederik Kratzert (Feb 12, 2016). Understanding the backward pass through Batch Normalization Layer. 
+https://kratzert.github.io/2016/02/12/understanding-the-gradient-flow-through-the-batch-normalization-layer.html.
+
+* Pierre Jaumier (Jul 10, 2019). Backpropagation in a convolutional layer.
+https://towardsdatascience.com/backpropagation-in-a-convolutional-layer-24c8d64d8509
+
+* Emily Elia (Jul 29, 2019). A Guide to Building Convolutional Neural Networks from Scratch.
+https://towardsdatascience.com/a-guide-to-convolutional-neural-networks-from-scratch-f1e3bfc3e2de
+
+* Mayank Agarwal (Dec 14, 2017). Back Propagation in Convolutional Neural Networks — Intuition and Code.
+https://becominghuman.ai/back-propagation-in-convolutional-neural-networks-intuition-and-code-714ef1c38199
+
+* Jason Brownlee (Jan 23, 2019). How to Configure the Learning Rate When Training Deep Learning Neural Networks.
+https://machinelearningmastery.com/learning-rate-for-deep-learning-neural-networks/
