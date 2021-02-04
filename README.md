@@ -26,6 +26,10 @@ Convolutional neural network from scratch with handwritten digit recognition exa
 
 ![alt text](github%20resource/feedforward.png)
 
+## Backpropagation phase
+
+![alt text](github%20resource/backpropagation.png)
+
 ## Convolutional layer
 
 ### Feed Forward
