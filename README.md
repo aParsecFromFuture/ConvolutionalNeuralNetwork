@@ -30,6 +30,10 @@ Convolutional neural network from scratch with handwritten digit recognition exa
 
 ![alt text](github%20resource/backpropagation.png)
 
+## Performance stats based on sample count
+
+![alt text](github%20resource/sample_count.png)
+
 ## Convolutional layer
 
 ### Feed Forward
