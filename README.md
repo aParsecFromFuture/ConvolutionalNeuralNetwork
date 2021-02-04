@@ -22,6 +22,10 @@ Convolutional neural network from scratch with handwritten digit recognition exa
 * Multi channel input support
 * Validation split support
 
+## Preprocessing and Feedforward phase
+
+![alt text](github%20resource/feedforward.png)
+
 ## Convolutional layer
 
 ### Feed Forward
