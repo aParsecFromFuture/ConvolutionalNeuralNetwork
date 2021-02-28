@@ -42,6 +42,10 @@ Convolutional neural network from scratch with handwritten digit recognition exa
 
 ![alt text](github%20resource/model_init.png)
 
+## Terminal
+
+![alt text](github%20resource/terminal.png)
+
 ### References
 
 * Sergey Ioffe and Christian Szegedy. Batch Normalization: Accelerating Deep Network Training by Reducing
