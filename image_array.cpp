@@ -1,0 +1,110 @@
+#include "image_array.h"
+
+ImageArray::ImageArray(int width, int height, int channel) {
+	this->width = width;
+	this->height = height;
+	this->channel = channel;
+	this->image_count = 0;
+	this->train_image_count = 0;
+	this->valid_image_count = 0;
+	this->valid_split = 0.0f;
+	this->data = 0;
+}
+
+ImageArray::~ImageArray() {
+	if(data)
+		delete[] data;
+}
+
+void ImageArray::split(float rate) {
+	valid_split = rate;
+	train_image_count = image_count * (1.0f - valid_split);
+	valid_image_count = image_count * valid_split;
+}
+
+void ImageArray::load_from(const char* file_path) {
+	std::ifstream file(file_path, std::ios::binary);
+	int count = 0;
+	float tmp;
+	
+	while (file.read(reinterpret_cast<char*>(&tmp), sizeof(float)))
+		count++;
+
+	file.clear();
+	file.seekg(0);
+	
+	if (data)
+		delete[] data;
+
+	data = new float[count];
+
+	while (file.read(reinterpret_cast<char*>(data), sizeof(float) * count));
+	file.close();
+
+	image_count = count / (width * height * channel);
+}
+
+int ImageArray::item_size() const {
+	return width * height * channel;
+}
+
+int ImageArray::count() const {
+	return image_count;
+}
+
+int ImageArray::train_sample_count() const {
+	return train_image_count;
+}
+
+int ImageArray::valid_sample_count() const {
+	return valid_image_count;
+}
+
+float* ImageArray::get_data(int order) const {
+	return &data[order * (width * height * channel)];
+}
+
+void ImageArray::batch_normalization(ImageArray& train_images, ImageArray& test_images) {
+	int feature_dim = train_images.width * train_images.height * train_images.channel;
+	float* mean = new float[feature_dim];
+	float* variance = new float[feature_dim];
+
+	for (int i = 0; i < feature_dim; i++)
+		mean[i] = variance[i] = 0.0f;
+
+	for (int i = 0; i < train_images.train_image_count; i++)
+		for (int j = 0; j < feature_dim; j++)
+			mean[j] += train_images.data[i * feature_dim + j];
+
+	for (int i = 0; i < feature_dim; i++)
+		mean[i] /= train_images.train_image_count;
+
+	for (int i = 0; i < train_images.train_image_count; i++)
+		for (int j = 0; j < feature_dim; j++)
+			variance[j] += (train_images.data[i * feature_dim + j] - mean[j]) * (train_images.data[i * feature_dim + j] - mean[j]);
+
+	for (int i = 0; i < feature_dim; i++)
+		variance[i] /= train_images.image_count;
+
+	for (int i = 0; i < train_images.image_count; i++)
+		for (int j = 0; j < feature_dim; j++)
+			train_images.data[i * feature_dim + j] = (train_images.data[i * feature_dim + j] - mean[j]) / (sqrt(variance[j] + 0.0001f));
+
+	for (int i = 0; i < test_images.image_count; i++)
+		for (int j = 0; j < feature_dim; j++)
+			test_images.data[i * feature_dim + j] = (test_images.data[i * feature_dim + j] - mean[j]) / (sqrt(variance[j] + 0.0001f));
+}
+
+void ImageArray::min_max_scaling(ImageArray& train_images, ImageArray& test_images) {
+	int len;
+	
+	len = (train_images.width * train_images.height * train_images.channel * train_images.image_count);
+
+	for (int i = 0; i < len; i++)
+		train_images.data[i] /= 255.0f;
+
+	len = (test_images.width * test_images.height * test_images.channel * test_images.image_count);
+
+	for (int i = 0; i < len; i++)
+		test_images.data[i] /= 255.0f;
+}

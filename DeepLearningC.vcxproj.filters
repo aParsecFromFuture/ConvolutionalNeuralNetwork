@@ -13,6 +13,30 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Layers">
+      <UniqueIdentifier>{7d0d10b8-9544-4c50-be8a-5298ffe0471a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Layers\Hidden Layers">
+      <UniqueIdentifier>{77dc34fc-6db8-4a90-8c61-edf6b78fa5cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Layers">
+      <UniqueIdentifier>{c004c0fd-d32a-4ea9-b747-edc19e21960a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Layers\Hidden Layers">
+      <UniqueIdentifier>{715c4265-c3af-4aee-a67f-19fa16fb05e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Array">
+      <UniqueIdentifier>{a0e4ea5c-1f7b-45c7-a114-daaa3f592d54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Array">
+      <UniqueIdentifier>{9bf5b29f-0ba2-4e79-891e-5f2e869ee0a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\dataset">
+      <UniqueIdentifier>{3cf790dd-62c0-400f-b358-0be202a8009a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\save">
+      <UniqueIdentifier>{b8e664f4-e139-4771-ae0c-eaddac69fc53}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DeepLearningC.cpp">
@@ -24,6 +48,36 @@
     <ClCompile Include="cnn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="batchnorm.cpp">
+      <Filter>Source Files\Layers\Hidden Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="conv2d.cpp">
+      <Filter>Source Files\Layers\Hidden Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="dense.cpp">
+      <Filter>Source Files\Layers\Hidden Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="maxpool.cpp">
+      <Filter>Source Files\Layers\Hidden Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="relu.cpp">
+      <Filter>Source Files\Layers\Hidden Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="layer.cpp">
+      <Filter>Source Files\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="output.cpp">
+      <Filter>Source Files\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="image_array.cpp">
+      <Filter>Source Files\Array</Filter>
+    </ClCompile>
+    <ClCompile Include="label_array.cpp">
+      <Filter>Source Files\Array</Filter>
+    </ClCompile>
+    <ClCompile Include="alloc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="preprocessing.h">
@@ -32,19 +86,55 @@
     <ClInclude Include="cnn.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="batchnorm.h">
+      <Filter>Header Files\Layers\Hidden Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="conv2d.h">
+      <Filter>Header Files\Layers\Hidden Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="maxpool.h">
+      <Filter>Header Files\Layers\Hidden Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="relu.h">
+      <Filter>Header Files\Layers\Hidden Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="dense.h">
+      <Filter>Header Files\Layers\Hidden Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="output.h">
+      <Filter>Header Files\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="layer.h">
+      <Filter>Header Files\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="image_array.h">
+      <Filter>Header Files\Array</Filter>
+    </ClInclude>
+    <ClInclude Include="label_array.h">
+      <Filter>Header Files\Array</Filter>
+    </ClInclude>
+    <ClInclude Include="alloc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="test_x.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="mnist_test_x.txt">
+      <Filter>Resource Files\dataset</Filter>
     </Text>
-    <Text Include="test_y.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="mnist_test_y.txt">
+      <Filter>Resource Files\dataset</Filter>
     </Text>
-    <Text Include="train_x.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="mnist_train_x.txt">
+      <Filter>Resource Files\dataset</Filter>
     </Text>
-    <Text Include="train_y.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="mnist_train_y.txt">
+      <Filter>Resource Files\dataset</Filter>
+    </Text>
+    <Text Include="my_model.txt">
+      <Filter>Resource Files\save</Filter>
+    </Text>
+    <Text Include="save_model.txt">
+      <Filter>Resource Files\save</Filter>
     </Text>
   </ItemGroup>
 </Project>
