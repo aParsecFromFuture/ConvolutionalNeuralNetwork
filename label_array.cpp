@@ -71,8 +71,12 @@ int* LabelArray::simplify() {
 	return prediction;
 }
 
-float* LabelArray::get_data(int order) {
+float* LabelArray::get_data(int order) const {
 	return &data[order * category_count];
+}
+
+float* LabelArray::raw() {
+	return data;
 }
 
 int LabelArray::get_category_count() const {

@@ -71,8 +71,12 @@ int ImageArray::valid_sample_count() const {
 	return valid_image_count;
 }
 
-float* ImageArray::get_data(int order) {
+float* ImageArray::get_data(int order) const {
 	return &data[order * (width * height * channel)];
+}
+
+float* ImageArray::raw() {
+	return data;
 }
 
 void ImageArray::batch_normalization(ImageArray& train_images, ImageArray& test_images) {

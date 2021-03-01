@@ -22,7 +22,8 @@ public:
 	int count() const;
 	int train_sample_count() const;
 	int valid_sample_count() const;
-	float* get_data(int);
+	float* get_data(int) const;
+	float* raw();
 	static void batch_normalization(ImageArray&, ImageArray&);
 	static void min_max_scaling(ImageArray&);
 	friend class CNN;
