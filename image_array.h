@@ -23,6 +23,6 @@ public:
 	int valid_sample_count() const;
 	float* get_data(int) const;
 	static void batch_normalization(ImageArray&, ImageArray&);
-	static void min_max_scaling(ImageArray&, ImageArray&);
+	static void min_max_scaling(ImageArray&);
 	friend class CNN;
 };

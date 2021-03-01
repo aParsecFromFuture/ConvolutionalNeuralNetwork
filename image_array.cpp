@@ -95,16 +95,9 @@ void ImageArray::batch_normalization(ImageArray& train_images, ImageArray& test_
 			test_images.data[i * feature_dim + j] = (test_images.data[i * feature_dim + j] - mean[j]) / (sqrt(variance[j] + 0.0001f));
 }
 
-void ImageArray::min_max_scaling(ImageArray& train_images, ImageArray& test_images) {
-	int len;
-	
-	len = (train_images.width * train_images.height * train_images.channel * train_images.image_count);
+void ImageArray::min_max_scaling(ImageArray& images) {
+	int len = (images.width * images.height * images.channel * images.image_count);
 
 	for (int i = 0; i < len; i++)
-		train_images.data[i] /= 255.0f;
-
-	len = (test_images.width * test_images.height * test_images.channel * test_images.image_count);
-
-	for (int i = 0; i < len; i++)
-		test_images.data[i] /= 255.0f;
+		images.data[i] = images.data[i] / 255.0f;
 }

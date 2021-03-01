@@ -19,7 +19,8 @@ int main() {
     LabelArray test_labels(10);
     test_labels.load_from("mnist_test_y.txt");
     
-    ImageArray::batch_normalization(train_images, test_images);
+    ImageArray::min_max_scaling(train_images);
+    ImageArray::min_max_scaling(test_images);
     
     printf("Training stage has started\n\n");
     
