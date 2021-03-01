@@ -137,6 +137,7 @@ void CNN::save_to(const char* file_path) {
 	file.open(file_path, std::ios::binary);
 	file.write((char*)&layer_count, sizeof(layer_count));
 	file.write((char*)&batch_size, sizeof(batch_size));
+	file.write((char*)&category_count, sizeof(category_count));
 
 	for (int i = 0; i < layer_count; i++)
 		layer[i]->save_to(file);
@@ -156,6 +157,7 @@ void CNN::load_from(const char* file_path) {
 	file.open(file_path, std::ios::binary);
 	file.read((char*)&layer_count, sizeof(layer_count));
 	file.read((char*)&batch_size, sizeof(batch_size));
+	file.read((char*)&category_count, sizeof(category_count));
 
 	layer = new Layer * [layer_count];
 	
