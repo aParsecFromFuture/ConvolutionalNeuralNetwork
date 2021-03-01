@@ -52,6 +52,25 @@ void LabelArray::alloc(int label_count) {
 		data[i] = 0.0f;
 }
 
+int* LabelArray::simplify() {
+	int* prediction = new int[label_count];
+	int max_index;
+	float max;
+
+	for (int i = 0; i < label_count; i++) {
+		max_index = 0;
+		max = 0.0f;
+		for(int j = 0; j < category_count; j++)
+			if (max < data[i * category_count + j]) {
+				max = data[i * category_count + j];
+				max_index = j;
+			}
+		prediction[i] = max_index;
+	}
+
+	return prediction;
+}
+
 float* LabelArray::get_data(int order) {
 	return &data[order * category_count];
 }

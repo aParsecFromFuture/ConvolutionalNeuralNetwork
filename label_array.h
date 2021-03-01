@@ -12,6 +12,7 @@ public:
 	~LabelArray();
 	void load_from(const char*);
 	void alloc(int);
+	int* simplify();
 	float* get_data(int);
 	int get_category_count() const;
 	int get_label_count() const;
