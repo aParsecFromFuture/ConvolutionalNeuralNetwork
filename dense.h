@@ -2,7 +2,7 @@
 #include "layer.h"
 
 class Dense : public Layer {
-public:
+private:
 	float* weight, * mweight, * copy_weight;
 	float* bias, * mbias;
 private:

@@ -3,7 +3,7 @@
 #include "alloc.h"
 
 class ImageArray {
-public:
+private:
 	int width;
 	int height;
 	int channel;

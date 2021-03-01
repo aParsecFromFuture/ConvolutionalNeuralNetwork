@@ -2,7 +2,7 @@
 #include "layer.h"
 
 class Conv2D : public Layer {
-public:
+private:
 	int kcrow, kccol, kdepth;
 	int kcr, kdcr;
 	float* kernel, * mkernel, * copy_kernel;

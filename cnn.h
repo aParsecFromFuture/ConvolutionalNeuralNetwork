@@ -11,7 +11,7 @@
 #include "label_array.h"
 
 class CNN {
-public:
+private:
 	int layer_count;
 	int batch_size;
 	Layer** layer;

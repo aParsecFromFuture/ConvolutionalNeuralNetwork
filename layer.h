@@ -6,7 +6,7 @@ extern const float EULER;
 extern const float EPSILON;
 
 class Layer {
-public:
+protected:
 	int icrow, iccol, idepth;
 	int icr, idcr;
 	int ocrow, occol, odepth;
