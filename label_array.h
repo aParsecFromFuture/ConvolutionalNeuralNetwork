@@ -11,6 +11,9 @@ public:
 	LabelArray(int);
 	~LabelArray();
 	void load_from(const char*);
-	float* get_data(int) const ;
+	void alloc(int);
+	float* get_data(int);
+	int get_category_count() const;
+	int get_label_count() const;
 	friend class CNN;
 };

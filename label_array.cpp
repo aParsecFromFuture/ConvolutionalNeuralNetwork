@@ -41,6 +41,24 @@ void LabelArray::load_from(const char* file_path) {
 	delete[] tmp_data;
 }
 
-float* LabelArray::get_data(int order) const {
+void LabelArray::alloc(int label_count) {
+	if (data)
+		delete[] data;
+
+	this->label_count = label_count;
+
+	data = new float[label_count * category_count];
+	for (int i = 0; i < (label_count * category_count); i++)
+		data[i] = 0.0f;
+}
+
+float* LabelArray::get_data(int order) {
 	return &data[order * category_count];
+}
+
+int LabelArray::get_category_count() const {
+	return category_count;
+}
+int LabelArray::get_label_count() const {
+	return label_count;
 }

@@ -3,6 +3,7 @@
 CNN::CNN() {
 	layer_count = 0;
 	batch_size = 0;
+	category_count = 0;
 	layer = 0;
 	output = 0;
 }
@@ -32,8 +33,9 @@ void CNN::add_layer(Layer* ly) {
 	layer[layer_count++] = ly;
 }
 
-void CNN::setup(int width, int height, int channel, int batch_size) {
+void CNN::setup(int width, int height, int channel, int batch_size, int category_count) {
 	this->batch_size = batch_size;
+	this->category_count = category_count;
 	this->output = new float* [layer_count + 1];
 	
 	layer[0]->init(width, height, channel, batch_size);
@@ -47,14 +49,13 @@ void CNN::setup(int width, int height, int channel, int batch_size) {
 }
 
 void CNN::train(const ImageArray &images, const LabelArray &labels, int epoch, float lr, float momentum) {
-	int batch_count, valid_batch_count, category_count, image_size, valid_index;
+	int batch_count, valid_batch_count, image_size, valid_index;
 	int* shuffle_array;
 	float err, err_now, * target;
 
 	batch_count = images.train_sample_count() / batch_size;
 	valid_batch_count = images.valid_sample_count() / batch_size;
 	shuffle_array = create_shuffle_index(images.count());
-	category_count = labels.category_count;
 	image_size = images.item_size();
 	valid_index = images.train_image_count;
 
@@ -104,22 +105,20 @@ void CNN::train(const ImageArray &images, const LabelArray &labels, int epoch, f
 	delete[] target;
 }
 
-void CNN::test(const ImageArray &images, const LabelArray &labels) {
-	float* target = init_mem(labels.category_count);
+LabelArray CNN::test(const ImageArray &images) {
+	LabelArray prediction(category_count);
+	prediction.alloc(images.count());
 
 	for (int i = 0; i < images.image_count; i++) {
 		copy_mem(images.get_data(0), output[0], i, 1, images.item_size(), 0);
-		copy_mem(labels.get_data(0), target, i, 1, labels.category_count, 0);
 
 		for (int j = 0; j < layer_count; j++)
 			layer[j]->test(output[j], output[j + 1]);
 
-		printf("Sample %d\n", (i + 1));
-		for (int j = 0; j < labels.category_count; j++)
-			printf("%.2f - %.2f\n", target[j], output[layer_count][j]);
+		copy_mem(output[layer_count], &prediction.data[i * category_count], 0, 1, category_count, 0);
 	}
 
-	delete[] target;
+	return prediction;
 }
 
 float CNN::evaluate(const float* output, const float* target, int category_count, int cbatch) {

@@ -14,6 +14,7 @@ class CNN {
 private:
 	int layer_count;
 	int batch_size;
+	int category_count;
 	Layer** layer;
 	float** output;
 	static float evaluate(const float*, const float*, int, int);
@@ -21,9 +22,9 @@ public:
 	CNN();
 	~CNN();
 	void add_layer(Layer*);
-	void setup(int, int, int, int);
+	void setup(int, int, int, int, int);
 	void train(const ImageArray&, const LabelArray&, int, float, float);
-	void test(const ImageArray&, const LabelArray&);
+	LabelArray test(const ImageArray&);
 	void save_to(const char*);
 	void load_from(const char*);
 };

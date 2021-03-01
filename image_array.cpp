@@ -44,6 +44,17 @@ void ImageArray::load_from(const char* file_path) {
 	image_count = count / (width * height * channel);
 }
 
+void ImageArray::alloc(int image_count) {
+	if (data)
+		delete[] data;
+
+	this->image_count = image_count;
+
+	data = new float[image_count * width * height * channel];
+	for (int i = 0; i < (image_count * width * height * channel); i++)
+		data[i] = 0.0f;
+}
+
 int ImageArray::item_size() const {
 	return width * height * channel;
 }
@@ -60,7 +71,7 @@ int ImageArray::valid_sample_count() const {
 	return valid_image_count;
 }
 
-float* ImageArray::get_data(int order) const {
+float* ImageArray::get_data(int order) {
 	return &data[order * (width * height * channel)];
 }
 

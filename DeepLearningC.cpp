@@ -39,10 +39,10 @@ int main() {
     model.add_layer(new BatchNorm());
     model.add_layer(new Output(10));
     
-    model.setup(28, 28, 1, 64);
-
-    model.train(train_images, train_labels, 5, 0.1f, 0.9f);
-    model.test(test_images, test_labels);
+    model.setup(28, 28, 1, 64, 10);
+    
+    model.train(train_images, train_labels, 1, 0.1f, 0.9f);
+    LabelArray prediction = model.test(test_images);
 
     model.save_to("my_model.txt");
     
