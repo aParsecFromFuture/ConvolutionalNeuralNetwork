@@ -60,6 +60,7 @@ void BatchNorm::init(int icrow, int iccol, int idepth, int batch_size) {
 	this->dx2 = init_mem(this->icrow * this->iccol * this->idepth * this->cbatch);
 
 	for (int i = 0; i < this->idepth; i++) {
+		this->mean[i] = 0.0f;
 		this->gamma[i] = 1.0f;
 		this->beta[i] = 0.0f;
 		this->mgamma[i] = 0.0f;
@@ -69,13 +70,14 @@ void BatchNorm::init(int icrow, int iccol, int idepth, int batch_size) {
 
 void BatchNorm::feedforward(const float* inp, float* out) {
 	int i, j, k;
+	float sum;
 
 	for (i = 0; i < idepth; i++) {
-		mean[i] = 0.0f;
+		sum = 0.0f;
 		for (j = 0; j < cbatch; j++)
 			for (k = 0; k < icr; k++)
-				mean[i] += inp[j * idcr + i * icr + k];
-		mean[i] = mean[i] / (icr * cbatch);
+				sum += inp[j * idcr + i * icr + k];
+		mean[i] = 0.9f * mean[i] + 0.1f * (sum / (icr * cbatch));
 
 		for (j = 0; j < cbatch; j++)
 			for (k = 0; k < icr; k++) {
