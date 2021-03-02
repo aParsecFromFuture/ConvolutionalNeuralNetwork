@@ -53,9 +53,9 @@ void CNN::train(const ImageArray &images, const LabelArray &labels, int epoch, f
 	int* shuffle_array;
 	float err, err_now, * target;
 
-	batch_count = images.train_sample_count() / batch_size;
-	valid_batch_count = images.valid_sample_count() / batch_size;
-	shuffle_array = create_shuffle_index(images.count());
+	batch_count = images.train_image_count / batch_size;
+	valid_batch_count = images.valid_image_count / batch_size;
+	shuffle_array = create_shuffle_index(images.train_image_count);
 	image_size = images.item_size();
 	valid_index = images.train_image_count;
 
@@ -67,6 +67,7 @@ void CNN::train(const ImageArray &images, const LabelArray &labels, int epoch, f
 	}
 
 	for (int i = 0; i < epoch; i++) {
+		shuffle(shuffle_array, images.train_image_count);
 		err = 0.0f;
 		for (int j = 0; j < batch_count; j++) {
 			copy_mem(images.get_data(0), output[0], j * batch_size, batch_size, image_size, shuffle_array);
