@@ -9,17 +9,7 @@ CNN::CNN() {
 }
 
 CNN::~CNN() {
-	for (int i = 0; i < layer_count; i++)
-		delete[] layer[i];
-	delete[] layer;
-
-	if (output) {
-		delete[] output;
-
-		for (int i = 0; i < (layer_count + 1); i++)
-			if (output[i])
-				delete[] output[i];
-	}
+	
 }
 
 void CNN::add_layer(Layer* ly) {

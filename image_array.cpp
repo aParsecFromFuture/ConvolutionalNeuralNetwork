@@ -12,8 +12,7 @@ ImageArray::ImageArray(int width, int height, int channel) {
 }
 
 ImageArray::~ImageArray() {
-	if(data)
-		delete[] data;
+
 }
 
 void ImageArray::split(float rate) {
