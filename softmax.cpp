@@ -27,10 +27,17 @@ void Softmax::feedforward(const float* inp, float* out) {
 
 void Softmax::backpropagation(const float* inp, const float* target, float* out) {
 	int i, j;
-	
-	for (i = 0; i < cbatch; i++)
+	float sum;
+
+	for (i = 0; i < cbatch; i++) {
+		sum = 0.0f;
+
 		for (j = 0; j < odepth; j++)
-			out[i * odepth + j] = inp[i * odepth + j] - target[i * odepth + j];
+			sum += target[i * odepth + j];
+
+		for (j = 0; j < odepth; j++)
+			out[i * odepth + j] = sum * inp[i * odepth + j] - target[i * odepth + j];
+	}
 }
 
 void Softmax::test(const float* inp, float* out, int csample) {
