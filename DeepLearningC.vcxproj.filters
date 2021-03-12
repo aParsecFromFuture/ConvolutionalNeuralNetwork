@@ -93,6 +93,9 @@
     <ClCompile Include="sigmoid.cpp">
       <Filter>Source Files\Layers\Activations</Filter>
     </ClCompile>
+    <ClCompile Include="elu.cpp">
+      <Filter>Source Files\Layers\Activations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="preprocessing.h">
@@ -138,6 +141,9 @@
       <Filter>Header Files\Layers\Activations</Filter>
     </ClInclude>
     <ClInclude Include="sigmoid.h">
+      <Filter>Header Files\Layers\Activations</Filter>
+    </ClInclude>
+    <ClInclude Include="elu.h">
       <Filter>Header Files\Layers\Activations</Filter>
     </ClInclude>
   </ItemGroup>

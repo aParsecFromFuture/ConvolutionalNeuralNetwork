@@ -42,13 +42,13 @@ int main() {
     model.setup(28, 28, 1, 64, 10);
     
     model.train(train_images, train_labels, 1, 0.1f, 0.1f, 0.9f);
-
+    
     int* numbers = test_labels.simplify();
     int* prediction = model.test(test_images).simplify();
 
     for (int i = 0; i < test_labels.get_label_count(); i++)
         printf("num : %d \t pred : %d\n", numbers[i], prediction[i]);
-
+    
     model.save_to("my_model.txt");
     
     /*

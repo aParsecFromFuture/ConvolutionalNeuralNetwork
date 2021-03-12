@@ -5,6 +5,7 @@
 #include "conv2d.h"
 #include "batchnorm.h"
 #include "maxpool.h"
+#include "elu.h"
 #include "relu.h"
 #include "leaky_relu.h"
 #include "tanh.h"

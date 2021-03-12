@@ -145,6 +145,7 @@
     <ClCompile Include="DeepLearningC.cpp" />
     <ClCompile Include="cnn.cpp" />
     <ClCompile Include="dense.cpp" />
+    <ClCompile Include="elu.cpp" />
     <ClCompile Include="image_array.cpp" />
     <ClCompile Include="label_array.cpp" />
     <ClCompile Include="layer.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="cnn.h" />
     <ClInclude Include="conv2d.h" />
     <ClInclude Include="dense.h" />
+    <ClInclude Include="elu.h" />
     <ClInclude Include="image_array.h" />
     <ClInclude Include="label_array.h" />
     <ClInclude Include="layer.h" />
