@@ -5,20 +5,11 @@ ImageArray::ImageArray(int width, int height, int channel) {
 	this->height = height;
 	this->channel = channel;
 	this->image_count = 0;
-	this->train_image_count = 0;
-	this->valid_image_count = 0;
-	this->valid_split = 0.0f;
 	this->data = 0;
 }
 
 ImageArray::~ImageArray() {
 
-}
-
-void ImageArray::split(float rate) {
-	valid_split = rate;
-	train_image_count = image_count * (1.0f - valid_split);
-	valid_image_count = image_count * valid_split;
 }
 
 void ImageArray::load_from(const char* file_path) {
@@ -62,14 +53,6 @@ int ImageArray::count() const {
 	return image_count;
 }
 
-int ImageArray::train_sample_count() const {
-	return train_image_count;
-}
-
-int ImageArray::valid_sample_count() const {
-	return valid_image_count;
-}
-
 float* ImageArray::get_data(int order) const {
 	return &data[order * (width * height * channel)];
 }
@@ -86,14 +69,14 @@ void ImageArray::batch_normalization(ImageArray& train_images, ImageArray& test_
 	for (int i = 0; i < feature_dim; i++)
 		mean[i] = variance[i] = 0.0f;
 
-	for (int i = 0; i < train_images.train_image_count; i++)
+	for (int i = 0; i < train_images.image_count; i++)
 		for (int j = 0; j < feature_dim; j++)
 			mean[j] += train_images.data[i * feature_dim + j];
 
 	for (int i = 0; i < feature_dim; i++)
-		mean[i] /= train_images.train_image_count;
+		mean[i] /= train_images.image_count;
 
-	for (int i = 0; i < train_images.train_image_count; i++)
+	for (int i = 0; i < train_images.image_count; i++)
 		for (int j = 0; j < feature_dim; j++)
 			variance[j] += (train_images.data[i * feature_dim + j] - mean[j]) * (train_images.data[i * feature_dim + j] - mean[j]);
 

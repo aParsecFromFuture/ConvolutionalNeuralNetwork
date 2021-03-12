@@ -38,16 +38,17 @@ void CNN::setup(int width, int height, int channel, int batch_size, int category
 		output[i + 1] = init_mem(layer[i]->ocrow * layer[i]->occol * layer[i]->odepth * batch_size);
 }
 
-void CNN::train(const ImageArray &images, const LabelArray &labels, int epoch, float lr, float momentum) {
-	int batch_count, valid_batch_count, image_size, valid_index;
+void CNN::train(const ImageArray &images, const LabelArray &labels, int epoch, float lr, float valid_split, float momentum) {
+	int train_image_count, valid_image_count, train_batch_count, valid_batch_count, image_size;
 	int* shuffle_array;
 	float err, err_now, * target;
 
-	batch_count = images.train_image_count / batch_size;
-	valid_batch_count = images.valid_image_count / batch_size;
-	shuffle_array = create_shuffle_index(images.train_image_count);
+	train_image_count = (images.image_count * (1.0f - valid_split));
+	train_batch_count = train_image_count / batch_size;
+	valid_image_count = (images.image_count * valid_split);
+	valid_batch_count = valid_image_count / batch_size;
+	shuffle_array = create_shuffle_index(train_image_count);
 	image_size = images.item_size();
-	valid_index = images.train_image_count;
 
 	target = init_mem(category_count * batch_size);
 
@@ -57,9 +58,9 @@ void CNN::train(const ImageArray &images, const LabelArray &labels, int epoch, f
 	}
 
 	for (int i = 0; i < epoch; i++) {
-		shuffle(shuffle_array, images.train_image_count);
+		shuffle(shuffle_array, train_image_count);
 		err = 0.0f;
-		for (int j = 0; j < batch_count; j++) {
+		for (int j = 0; j < train_batch_count; j++) {
 			copy_mem(images.get_data(0), output[0], j * batch_size, batch_size, image_size, shuffle_array);
 			copy_mem(labels.get_data(0), target, j * batch_size, batch_size, category_count, shuffle_array);
 
@@ -69,20 +70,20 @@ void CNN::train(const ImageArray &images, const LabelArray &labels, int epoch, f
 			err_now = CNN::evaluate(output[layer_count], target, category_count, batch_size);
 			err += err_now;
 
-			printf("batch %d/%d : %.4f\n", j + 1, batch_count, err_now);
+			printf("batch %d/%d : %.4f\n", j + 1, train_batch_count, err_now);
 			
 			for (int k = (layer_count - 1); k >= 0; k--)
 				layer[k]->backpropagation(output[k + 1], target, output[k]);
 		}
-		printf("epoch %d error: %.4f\t", i + 1, err / batch_count);
+		printf("epoch %d error: %.4f\t", i + 1, err / train_batch_count);
 		
 		// VALIDATION STAGE
 		
 		err = 0.0f;
 
 		for (int j = 0; j < valid_batch_count; j++) {
-			copy_mem(images.get_data(valid_index), output[0], j * batch_size, batch_size, image_size, 0);
-			copy_mem(labels.get_data(valid_index), target, j * batch_size, batch_size, category_count, 0);
+			copy_mem(images.get_data(train_image_count), output[0], j * batch_size, batch_size, image_size, 0);
+			copy_mem(labels.get_data(train_image_count), target, j * batch_size, batch_size, category_count, 0);
 			
 			for (int k = 0; k < layer_count; k++)
 				layer[k]->feedforward(output[k], output[k + 1]);

@@ -23,7 +23,7 @@ public:
 	~CNN();
 	void add_layer(Layer*);
 	void setup(int, int, int, int, int);
-	void train(const ImageArray&, const LabelArray&, int = 1, float = 0.1f, float = 0.0f);
+	void train(const ImageArray&, const LabelArray&, int = 1, float = 0.1f, float = 0.1f, float = 0.0f);
 	LabelArray test(const ImageArray&);
 	void save_to(const char*);
 	void load_from(const char*);

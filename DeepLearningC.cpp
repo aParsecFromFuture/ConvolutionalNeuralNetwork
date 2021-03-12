@@ -8,7 +8,6 @@ int main() {
     
     ImageArray train_images(28, 28, 1);
     train_images.load_from("mnist_train_x.txt");
-    train_images.split(0.1);
     
     LabelArray train_labels(10);
     train_labels.load_from("mnist_train_y.txt");
@@ -41,7 +40,7 @@ int main() {
     
     model.setup(28, 28, 1, 64, 10);
     
-    model.train(train_images, train_labels, 1, 0.1f);
+    model.train(train_images, train_labels, 1, 0.1f, 0.1f, 0.9f);
 
     int* numbers = test_labels.simplify();
     int* prediction = model.test(test_images).simplify();
