@@ -11,5 +11,5 @@ public:
 	void test(const float*, float*, int);
 	void save_to(std::ofstream&);
 	void load_from(std::ifstream&);
-	friend class CNN;
+	friend class ANN;
 };

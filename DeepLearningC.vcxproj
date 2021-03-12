@@ -143,7 +143,7 @@
     <ClCompile Include="batchnorm.cpp" />
     <ClCompile Include="conv2d.cpp" />
     <ClCompile Include="DeepLearningC.cpp" />
-    <ClCompile Include="cnn.cpp" />
+    <ClCompile Include="ann.cpp" />
     <ClCompile Include="dense.cpp" />
     <ClCompile Include="elu.cpp" />
     <ClCompile Include="image_array.cpp" />
@@ -160,7 +160,7 @@
   <ItemGroup>
     <ClInclude Include="alloc.h" />
     <ClInclude Include="batchnorm.h" />
-    <ClInclude Include="cnn.h" />
+    <ClInclude Include="ann.h" />
     <ClInclude Include="conv2d.h" />
     <ClInclude Include="dense.h" />
     <ClInclude Include="elu.h" />

@@ -17,5 +17,5 @@ public:
 	float* raw();
 	int get_category_count() const;
 	int get_label_count() const;
-	friend class CNN;
+	friend class ANN;
 };

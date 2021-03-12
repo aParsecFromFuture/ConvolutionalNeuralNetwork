@@ -20,5 +20,5 @@ public:
 	float* raw();
 	static void batch_normalization(ImageArray&, ImageArray&);
 	static void min_max_scaling(ImageArray&);
-	friend class CNN;
+	friend class ANN;
 };

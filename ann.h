@@ -14,7 +14,7 @@
 #include "image_array.h"
 #include "label_array.h"
 
-class CNN {
+class ANN {
 private:
 	int layer_count;
 	int batch_size;
@@ -22,8 +22,8 @@ private:
 	Layer** layer;
 	static float evaluate(const float*, const float*, int, int);
 public:
-	CNN();
-	~CNN();
+	ANN();
+	~ANN();
 	void add_layer(Layer*);
 	void setup(int, int, int, int, int);
 	void train(const ImageArray&, const LabelArray&, int = 1, float = 0.1f, float = 0.1f, float = 0.0f);

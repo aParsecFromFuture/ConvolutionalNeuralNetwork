@@ -51,7 +51,7 @@
     <ClCompile Include="preprocessing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cnn.cpp">
+    <ClCompile Include="ann.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="batchnorm.cpp">
@@ -101,7 +101,7 @@
     <ClInclude Include="preprocessing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cnn.h">
+    <ClInclude Include="ann.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="batchnorm.h">

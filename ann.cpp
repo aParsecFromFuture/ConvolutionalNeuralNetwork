@@ -1,17 +1,17 @@
-#include "cnn.h"
+#include "ann.h"
 
-CNN::CNN() {
+ANN::ANN() {
 	layer_count = 0;
 	batch_size = 0;
 	category_count = 0;
 	layer = 0;
 }
 
-CNN::~CNN() {
+ANN::~ANN() {
 
 }
 
-void CNN::add_layer(Layer* ly) {
+void ANN::add_layer(Layer* ly) {
 	Layer** tmp_layer = new Layer * [layer_count + 1];
 
 	for (int i = 0; i < layer_count; i++)
@@ -22,7 +22,7 @@ void CNN::add_layer(Layer* ly) {
 	layer[layer_count++] = ly;
 }
 
-void CNN::setup(int width, int height, int channel, int batch_size, int category_count) {
+void ANN::setup(int width, int height, int channel, int batch_size, int category_count) {
 	this->batch_size = batch_size;
 	this->category_count = category_count;
 	
@@ -32,7 +32,7 @@ void CNN::setup(int width, int height, int channel, int batch_size, int category
 		layer[i]->init(layer[i - 1]->ocrow, layer[i - 1]->occol, layer[i - 1]->odepth, batch_size);
 }
 
-void CNN::train(const ImageArray &images, const LabelArray &labels, int epoch, float lr, float valid_split, float momentum) {
+void ANN::train(const ImageArray &images, const LabelArray &labels, int epoch, float lr, float valid_split, float momentum) {
 	int train_image_count, valid_image_count, train_batch_count, valid_batch_count, image_size;
 	int* shuffle_array;
 	float err, err_now, * target, ** output;
@@ -66,7 +66,7 @@ void CNN::train(const ImageArray &images, const LabelArray &labels, int epoch, f
 			for (int k = 0; k < layer_count; k++)
 				layer[k]->feedforward(output[k], output[k + 1]);
 
-			err_now = CNN::evaluate(output[layer_count], target, category_count, batch_size);
+			err_now = ANN::evaluate(output[layer_count], target, category_count, batch_size);
 			err += err_now;
 
 			printf("batch %d/%d : %.4f\n", j + 1, train_batch_count, err_now);
@@ -87,7 +87,7 @@ void CNN::train(const ImageArray &images, const LabelArray &labels, int epoch, f
 			for (int k = 0; k < layer_count; k++)
 				layer[k]->test(output[k], output[k + 1], batch_size);
 
-			err += CNN::evaluate(output[layer_count], target, category_count, batch_size);
+			err += ANN::evaluate(output[layer_count], target, category_count, batch_size);
 		}
 		printf("validation_error: %.4f\n", err / valid_batch_count);
 	}
@@ -99,7 +99,7 @@ void CNN::train(const ImageArray &images, const LabelArray &labels, int epoch, f
 	delete[] target;
 }
 
-LabelArray CNN::test(const ImageArray &images) {
+LabelArray ANN::test(const ImageArray &images) {
 	LabelArray prediction(category_count);
 	prediction.alloc(images.count());
 
@@ -122,7 +122,7 @@ LabelArray CNN::test(const ImageArray &images) {
 	return prediction;
 }
 
-float CNN::evaluate(const float* output, const float* target, int category_count, int cbatch) {
+float ANN::evaluate(const float* output, const float* target, int category_count, int cbatch) {
 	float err = 0.0f;
 
 	for (int i = 0; i < cbatch; i++)
@@ -132,7 +132,7 @@ float CNN::evaluate(const float* output, const float* target, int category_count
 	return err / cbatch;
 }
 
-void CNN::save_to(const char* file_path) {
+void ANN::save_to(const char* file_path) {
 	std::ofstream file;
 
 	file.open(file_path, std::ios::binary);
@@ -146,7 +146,7 @@ void CNN::save_to(const char* file_path) {
 	file.close();
 }
 
-void CNN::load_from(const char* file_path) {
+void ANN::load_from(const char* file_path) {
 	std::ifstream file;
 	int serial_id;
 

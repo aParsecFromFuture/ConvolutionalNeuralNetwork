@@ -22,5 +22,5 @@ public:
 	virtual void test(const float*, float*, int) = 0;
 	virtual void save_to(std::ofstream&);
 	virtual void load_from(std::ifstream&);
-	friend class CNN;
+	friend class ANN;
 };

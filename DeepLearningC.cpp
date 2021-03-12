@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-#include "cnn.h"
+#include "ann.h"
 
 int main() {
     srand(time(0));
@@ -23,7 +23,7 @@ int main() {
     
     printf("Training stage has started\n\n");
     
-    CNN model;
+    ANN model;
     
     model.add_layer(new Conv2D(5, 5, 16));
     model.add_layer(new Relu());
