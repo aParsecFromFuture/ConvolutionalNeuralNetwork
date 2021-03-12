@@ -7,7 +7,8 @@ LabelArray::LabelArray(int category_count) {
 }
 
 LabelArray::~LabelArray() {
-
+	if (data)
+		delete[] data;
 }
 
 void LabelArray::load_from(const char* file_path) {
