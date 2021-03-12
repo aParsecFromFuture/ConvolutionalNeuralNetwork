@@ -5,11 +5,10 @@ CNN::CNN() {
 	batch_size = 0;
 	category_count = 0;
 	layer = 0;
-	output = 0;
 }
 
 CNN::~CNN() {
-	
+
 }
 
 void CNN::add_layer(Layer* ly) {
@@ -26,22 +25,22 @@ void CNN::add_layer(Layer* ly) {
 void CNN::setup(int width, int height, int channel, int batch_size, int category_count) {
 	this->batch_size = batch_size;
 	this->category_count = category_count;
-	this->output = new float* [layer_count + 1];
 	
 	layer[0]->init(width, height, channel, batch_size);
-	output[0] = init_mem(width * height * channel * batch_size);
 
 	for (int i = 1; i < layer_count; i++)
 		layer[i]->init(layer[i - 1]->ocrow, layer[i - 1]->occol, layer[i - 1]->odepth, batch_size);
-
-	for (int i = 0; i < layer_count; i++)
-		output[i + 1] = init_mem(layer[i]->ocrow * layer[i]->occol * layer[i]->odepth * batch_size);
 }
 
 void CNN::train(const ImageArray &images, const LabelArray &labels, int epoch, float lr, float valid_split, float momentum) {
 	int train_image_count, valid_image_count, train_batch_count, valid_batch_count, image_size;
 	int* shuffle_array;
-	float err, err_now, * target;
+	float err, err_now, * target, ** output;
+
+	output = new float* [layer_count + 1];
+	output[0] = init_mem(layer[0]->icrow * layer[0]->iccol * layer[0]->idepth * batch_size);
+	for (int i = 0; i < layer_count; i++)
+		output[i + 1] = init_mem(layer[i]->ocrow * layer[i]->occol * layer[i]->odepth * batch_size);
 
 	train_image_count = (images.image_count * (1.0f - valid_split));
 	train_batch_count = train_image_count / batch_size;
@@ -86,13 +85,16 @@ void CNN::train(const ImageArray &images, const LabelArray &labels, int epoch, f
 			copy_mem(labels.get_data(train_image_count), target, j * batch_size, batch_size, category_count, 0);
 			
 			for (int k = 0; k < layer_count; k++)
-				layer[k]->feedforward(output[k], output[k + 1]);
+				layer[k]->test(output[k], output[k + 1], batch_size);
 
 			err += CNN::evaluate(output[layer_count], target, category_count, batch_size);
 		}
 		printf("validation_error: %.4f\n", err / valid_batch_count);
 	}
 
+	for (int i = 0; i < layer_count + 1; i++)
+		delete[] output[i];
+	delete[] output;
 	delete[] shuffle_array;
 	delete[] target;
 }
@@ -101,14 +103,21 @@ LabelArray CNN::test(const ImageArray &images) {
 	LabelArray prediction(category_count);
 	prediction.alloc(images.count());
 
-	for (int i = 0; i < images.image_count; i++) {
-		copy_mem(images.get_data(0), output[0], i, 1, images.item_size(), 0);
+	float** output = new float* [layer_count + 1];
+	output[0] = init_mem(layer[0]->icrow * layer[0]->iccol * layer[0]->idepth * images.count());
+	for (int i = 0; i < layer_count; i++)
+		output[i + 1] = init_mem(layer[i]->ocrow * layer[i]->occol * layer[i]->odepth * images.count());
 
-		for (int j = 0; j < layer_count; j++)
-			layer[j]->test(output[j], output[j + 1]);
+	copy_mem(images.get_data(0), output[0], 0, images.count(), images.item_size(), 0);
 
-		copy_mem(output[layer_count], &prediction.data[i * category_count], 0, 1, category_count, 0);
-	}
+	for (int i = 0; i < layer_count; i++)
+		layer[i]->test(output[i], output[i + 1], images.count());
+
+	copy_mem(output[layer_count], prediction.data, 0, images.count(), category_count, 0);
+	
+	for (int i = 0; i < layer_count + 1; i++)
+		delete[] output[i];
+	delete[] output;
 
 	return prediction;
 }
@@ -134,11 +143,6 @@ void CNN::save_to(const char* file_path) {
 	for (int i = 0; i < layer_count; i++)
 		layer[i]->save_to(file);
 
-	file.write((char*)output[0], sizeof(float) * (layer[0]->icrow * layer[0]->iccol * layer[0]->idepth * layer[0]->cbatch));
-
-	for (int i = 0; i < layer_count; i++)
-		file.write((char*)output[i + 1], sizeof(float) * (layer[i]->ocrow * layer[i]->occol * layer[i]->odepth * layer[i]->cbatch));
-
 	file.close();
 }
 
@@ -163,16 +167,6 @@ void CNN::load_from(const char* file_path) {
 		case Relu::SERIALIZE_ID:		layer[i] = new Relu; layer[i]->load_from(file); break;
 		case Output::SERIALIZE_ID:		layer[i] = new Output; layer[i]->load_from(file); break;
 		}
-	}
-
-	output = new float* [layer_count + 1];
-
-	output[0] = init_mem(layer[0]->icrow * layer[0]->iccol * layer[0]->idepth * batch_size);
-	file.read((char*)output[0], sizeof(float) * (layer[0]->icrow * layer[0]->iccol * layer[0]->idepth * layer[0]->cbatch));
-
-	for (int i = 0; i < layer_count; i++) {
-		output[i + 1] = init_mem(layer[i]->ocrow * layer[i]->occol * layer[i]->odepth * layer[i]->cbatch);
-		file.read((char*)output[i + 1], sizeof(float) * (layer[i]->ocrow * layer[i]->occol * layer[i]->odepth * layer[i]->cbatch));
 	}
 
 	file.close();

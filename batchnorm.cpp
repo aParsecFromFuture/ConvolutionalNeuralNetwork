@@ -172,11 +172,11 @@ void BatchNorm::backpropagation(const float* inp, const float* target, float* ou
 	}
 }
 
-void BatchNorm::test(const float* inp, float* out) {
+void BatchNorm::test(const float* inp, float* out, int csample) {
 	int i, j, k;
 	
 	for (i = 0; i < idepth; i++)
-		for (j = 0; j < cbatch; j++)
+		for (j = 0; j < csample; j++)
 			for (k = 0; k < icr; k++)
 				out[j * idcr + i * icr + k] = gamma[i] * ((inp[j * idcr + i * icr + k] - mean[i]) * istd[i]) + beta[i];
 }

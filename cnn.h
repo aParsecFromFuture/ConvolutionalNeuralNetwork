@@ -16,7 +16,6 @@ private:
 	int batch_size;
 	int category_count;
 	Layer** layer;
-	float** output;
 	static float evaluate(const float*, const float*, int, int);
 public:
 	CNN();

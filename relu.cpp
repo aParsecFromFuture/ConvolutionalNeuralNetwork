@@ -22,10 +22,10 @@ void Relu::backpropagation(const float* inp, const float* target, float* out) {
 		out[i] = (out[i] > 0.0f) ? inp[i] : 0.0f;
 }
 
-void Relu::test(const float* inp, float* out) {
+void Relu::test(const float* inp, float* out, int csample) {
 	int i;
 
-	for (i = 0; i < (icrow * iccol * idepth * cbatch); i++)
+	for (i = 0; i < (icrow * iccol * idepth * csample); i++)
 		out[i] = (inp[i] > 0.0f) ? inp[i] : 0.0f;
 }
 

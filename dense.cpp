@@ -70,10 +70,10 @@ void Dense::backpropagation(const float* inp, const float* target, float* out) {
 		}
 }
 
-void Dense::test(const float* inp, float* out) {
+void Dense::test(const float* inp, float* out, int csample) {
 	int i, j, k;
 
-	for (i = 0; i < cbatch; i++)
+	for (i = 0; i < csample; i++)
 		for (j = 0; j < odepth; j++) {
 			out[i * odepth + j] = 0.0f;
 			for (k = 0; k < idepth; k++)

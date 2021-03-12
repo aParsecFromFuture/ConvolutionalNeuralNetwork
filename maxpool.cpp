@@ -63,12 +63,12 @@ void MaxPool::backpropagation(const float* inp, const float* target, float* out)
 								out[i * idcr + j * icr + (2 * k + m) * iccol + (2 * l + n)] = 0.0f;
 }
 
-void MaxPool::test(const float* inp, float* out) {
+void MaxPool::test(const float* inp, float* out, int csample) {
 	int i, j, k, l;
 	int at, max_index;
 	float max;
 
-	for (i = 0; i < cbatch; i++)
+	for (i = 0; i < csample; i++)
 		for (j = 0; j < odepth; j++)
 			for (k = 0; k < ocrow; k++)
 				for (l = 0; l < occol; l++) {

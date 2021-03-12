@@ -83,11 +83,11 @@ void Output::backpropagation(const float* inp, const float* target, float* out) 
 		}
 }
 
-void Output::test(const float* inp, float* out) {
+void Output::test(const float* inp, float* out, int csample) {
 	int i, j, k;
 	float sum;
 
-	for (i = 0; i < cbatch; i++)
+	for (i = 0; i < csample; i++)
 		for (j = 0; j < odepth; j++) {
 			out[i * odepth + j] = 0.0f;
 			for (k = 0; k < idepth; k++)
@@ -95,7 +95,7 @@ void Output::test(const float* inp, float* out) {
 			out[i * odepth + j] += bias[j];
 		}
 
-	for (i = 0; i < cbatch; i++) {
+	for (i = 0; i < csample; i++) {
 		sum = 0.0f;
 
 		for (j = 0; j < odepth; j++)

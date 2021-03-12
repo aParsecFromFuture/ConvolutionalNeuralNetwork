@@ -19,7 +19,7 @@ public:
 	virtual void init(int, int, int, int) = 0;
 	virtual void feedforward(const float*, float*) = 0;
 	virtual void backpropagation(const float*, const float*, float*) = 0;
-	virtual void test(const float*, float*) = 0;
+	virtual void test(const float*, float*, int) = 0;
 	virtual void save_to(std::ofstream&);
 	virtual void load_from(std::ifstream&);
 	friend class CNN;

@@ -114,11 +114,11 @@ void Conv2D::backpropagation(const float* inp, const float* target, float* out) 
 				}
 }
 
-void Conv2D::test(const float* inp, float* out) {
+void Conv2D::test(const float* inp, float* out, int csample) {
 	int i, j, k, l, m, n, p;
 	float sum;
 
-	for (i = 0; i < cbatch; i++)
+	for (i = 0; i < csample; i++)
 		for (j = 0; j < odepth; j++)
 			for (k = 0; k < ocrow; k++)
 				for (l = 0; l < occol; l++) {
