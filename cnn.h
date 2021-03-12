@@ -8,6 +8,7 @@
 #include "relu.h"
 #include "leaky_relu.h"
 #include "tanh.h"
+#include "sigmoid.h"
 #include "softmax.h"
 #include "image_array.h"
 #include "label_array.h"

@@ -152,6 +152,7 @@
     <ClCompile Include="maxpool.cpp" />
     <ClCompile Include="preprocessing.cpp" />
     <ClCompile Include="relu.cpp" />
+    <ClCompile Include="sigmoid.cpp" />
     <ClCompile Include="softmax.cpp" />
     <ClCompile Include="tanh.cpp" />
   </ItemGroup>
@@ -168,6 +169,7 @@
     <ClInclude Include="maxpool.h" />
     <ClInclude Include="preprocessing.h" />
     <ClInclude Include="relu.h" />
+    <ClInclude Include="sigmoid.h" />
     <ClInclude Include="softmax.h" />
     <ClInclude Include="tanh.h" />
   </ItemGroup>

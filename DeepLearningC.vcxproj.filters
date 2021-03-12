@@ -90,6 +90,9 @@
     <ClCompile Include="leaky_relu.cpp">
       <Filter>Source Files\Layers\Activations</Filter>
     </ClCompile>
+    <ClCompile Include="sigmoid.cpp">
+      <Filter>Source Files\Layers\Activations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="preprocessing.h">
@@ -132,6 +135,9 @@
       <Filter>Header Files\Layers\Activations</Filter>
     </ClInclude>
     <ClInclude Include="leaky_relu.h">
+      <Filter>Header Files\Layers\Activations</Filter>
+    </ClInclude>
+    <ClInclude Include="sigmoid.h">
       <Filter>Header Files\Layers\Activations</Filter>
     </ClInclude>
   </ItemGroup>
