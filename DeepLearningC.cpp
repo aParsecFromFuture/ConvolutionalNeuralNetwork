@@ -36,7 +36,8 @@ int main() {
     model.add_layer(new Dense(128));
     model.add_layer(new Relu());
     model.add_layer(new BatchNorm());
-    model.add_layer(new Output(10));
+    model.add_layer(new Dense(10));
+    model.add_layer(new Softmax());
     
     model.setup(28, 28, 1, 64, 10);
     

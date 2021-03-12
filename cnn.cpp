@@ -165,7 +165,7 @@ void CNN::load_from(const char* file_path) {
 		case Dense::SERIALIZE_ID:		layer[i] = new Dense; layer[i]->load_from(file); break;
 		case MaxPool::SERIALIZE_ID:		layer[i] = new MaxPool; layer[i]->load_from(file); break;
 		case Relu::SERIALIZE_ID:		layer[i] = new Relu; layer[i]->load_from(file); break;
-		case Output::SERIALIZE_ID:		layer[i] = new Output; layer[i]->load_from(file); break;
+		case Softmax::SERIALIZE_ID:		layer[i] = new Softmax; layer[i]->load_from(file); break;
 		}
 	}
 

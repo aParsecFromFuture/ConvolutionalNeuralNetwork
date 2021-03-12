@@ -6,7 +6,7 @@
 #include "batchnorm.h"
 #include "maxpool.h"
 #include "relu.h"
-#include "output.h"
+#include "softmax.h"
 #include "image_array.h"
 #include "label_array.h"
 

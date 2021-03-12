@@ -149,9 +149,9 @@
     <ClCompile Include="label_array.cpp" />
     <ClCompile Include="layer.cpp" />
     <ClCompile Include="maxpool.cpp" />
-    <ClCompile Include="output.cpp" />
     <ClCompile Include="preprocessing.cpp" />
     <ClCompile Include="relu.cpp" />
+    <ClCompile Include="softmax.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="alloc.h" />
@@ -163,9 +163,9 @@
     <ClInclude Include="label_array.h" />
     <ClInclude Include="layer.h" />
     <ClInclude Include="maxpool.h" />
-    <ClInclude Include="output.h" />
     <ClInclude Include="preprocessing.h" />
     <ClInclude Include="relu.h" />
+    <ClInclude Include="softmax.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="mnist_test_x.txt" />

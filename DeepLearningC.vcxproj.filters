@@ -66,9 +66,6 @@
     <ClCompile Include="layer.cpp">
       <Filter>Source Files\Layers</Filter>
     </ClCompile>
-    <ClCompile Include="output.cpp">
-      <Filter>Source Files\Layers</Filter>
-    </ClCompile>
     <ClCompile Include="image_array.cpp">
       <Filter>Source Files\Array</Filter>
     </ClCompile>
@@ -77,6 +74,9 @@
     </ClCompile>
     <ClCompile Include="alloc.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="softmax.cpp">
+      <Filter>Source Files\Layers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -101,9 +101,6 @@
     <ClInclude Include="dense.h">
       <Filter>Header Files\Layers\Hidden Layers</Filter>
     </ClInclude>
-    <ClInclude Include="output.h">
-      <Filter>Header Files\Layers</Filter>
-    </ClInclude>
     <ClInclude Include="layer.h">
       <Filter>Header Files\Layers</Filter>
     </ClInclude>
@@ -115,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="alloc.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="softmax.h">
+      <Filter>Header Files\Layers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
