@@ -41,7 +41,7 @@ int main() {
     
     model.setup(28, 28, 1, 64, 10);
     
-    model.train(train_images, train_labels, 1, 0.1f, 0.9f);
+    model.train(train_images, train_labels, 1, 0.1f);
 
     int* numbers = test_labels.simplify();
     int* prediction = model.test(test_images).simplify();
