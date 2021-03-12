@@ -37,6 +37,12 @@
     <Filter Include="Resource Files\save">
       <UniqueIdentifier>{b8e664f4-e139-4771-ae0c-eaddac69fc53}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Layers\Activations">
+      <UniqueIdentifier>{962a8836-87b5-4c05-a180-6efa0f18c2e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Layers\Activations">
+      <UniqueIdentifier>{b86570ad-f1dc-4f42-b53f-83c8885ce560}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DeepLearningC.cpp">
@@ -60,9 +66,6 @@
     <ClCompile Include="maxpool.cpp">
       <Filter>Source Files\Layers\Hidden Layers</Filter>
     </ClCompile>
-    <ClCompile Include="relu.cpp">
-      <Filter>Source Files\Layers\Hidden Layers</Filter>
-    </ClCompile>
     <ClCompile Include="layer.cpp">
       <Filter>Source Files\Layers</Filter>
     </ClCompile>
@@ -76,7 +79,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="softmax.cpp">
-      <Filter>Source Files\Layers</Filter>
+      <Filter>Source Files\Layers\Activations</Filter>
+    </ClCompile>
+    <ClCompile Include="relu.cpp">
+      <Filter>Source Files\Layers\Activations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,9 +101,6 @@
     <ClInclude Include="maxpool.h">
       <Filter>Header Files\Layers\Hidden Layers</Filter>
     </ClInclude>
-    <ClInclude Include="relu.h">
-      <Filter>Header Files\Layers\Hidden Layers</Filter>
-    </ClInclude>
     <ClInclude Include="dense.h">
       <Filter>Header Files\Layers\Hidden Layers</Filter>
     </ClInclude>
@@ -114,7 +117,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="softmax.h">
-      <Filter>Header Files\Layers</Filter>
+      <Filter>Header Files\Layers\Activations</Filter>
+    </ClInclude>
+    <ClInclude Include="relu.h">
+      <Filter>Header Files\Layers\Activations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
