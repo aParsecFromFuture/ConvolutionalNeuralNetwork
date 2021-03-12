@@ -152,6 +152,7 @@
     <ClCompile Include="preprocessing.cpp" />
     <ClCompile Include="relu.cpp" />
     <ClCompile Include="softmax.cpp" />
+    <ClCompile Include="tanh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="alloc.h" />
@@ -166,6 +167,7 @@
     <ClInclude Include="preprocessing.h" />
     <ClInclude Include="relu.h" />
     <ClInclude Include="softmax.h" />
+    <ClInclude Include="tanh.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="mnist_test_x.txt" />

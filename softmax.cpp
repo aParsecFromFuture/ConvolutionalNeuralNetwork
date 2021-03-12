@@ -59,7 +59,6 @@ void Softmax::test(const float* inp, float* out, int csample) {
 
 void Softmax::save_to(std::ofstream& file) {
 	file.write((char*)&Softmax::SERIALIZE_ID, sizeof(int));
-
 	Layer::save_to(file);
 }
 
