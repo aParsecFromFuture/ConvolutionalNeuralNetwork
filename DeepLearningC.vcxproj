@@ -148,6 +148,7 @@
     <ClCompile Include="image_array.cpp" />
     <ClCompile Include="label_array.cpp" />
     <ClCompile Include="layer.cpp" />
+    <ClCompile Include="leaky_relu.cpp" />
     <ClCompile Include="maxpool.cpp" />
     <ClCompile Include="preprocessing.cpp" />
     <ClCompile Include="relu.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="image_array.h" />
     <ClInclude Include="label_array.h" />
     <ClInclude Include="layer.h" />
+    <ClInclude Include="leaky_relu.h" />
     <ClInclude Include="maxpool.h" />
     <ClInclude Include="preprocessing.h" />
     <ClInclude Include="relu.h" />
