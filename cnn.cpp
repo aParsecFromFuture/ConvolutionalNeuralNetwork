@@ -151,6 +151,12 @@ void CNN::load_from(const char* file_path) {
 	int serial_id;
 
 	file.open(file_path, std::ios::binary);
+
+	if (!file.is_open()) {
+		printf("The file \"%s\" couldn't open\n", file_path);
+		exit(1);
+	}
+
 	file.read((char*)&layer_count, sizeof(layer_count));
 	file.read((char*)&batch_size, sizeof(batch_size));
 	file.read((char*)&category_count, sizeof(category_count));

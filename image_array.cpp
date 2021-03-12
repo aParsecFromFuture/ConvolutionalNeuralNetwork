@@ -16,6 +16,11 @@ void ImageArray::load_from(const char* file_path) {
 	std::ifstream file(file_path, std::ios::binary);
 	int count = 0;
 	float tmp;
+
+	if (!file.is_open()) {
+		printf("The file \"%s\" couldn't open\n", file_path);
+		exit(1);
+	}
 	
 	while (file.read(reinterpret_cast<char*>(&tmp), sizeof(float)))
 		count++;
