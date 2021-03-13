@@ -2,8 +2,6 @@
 #include "ann.h"
 
 int main() {
-    srand(time(0));
-    
     printf("Training data is loading...\n");
     
     ImageArray train_images(28, 28, 1);

@@ -1,6 +1,7 @@
 #include "ann.h"
 
 ANN::ANN() {
+	srand(time(0));
 	layer_count = 0;
 	batch_size = 0;
 	category_count = 0;
