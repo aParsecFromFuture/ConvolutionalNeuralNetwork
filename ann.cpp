@@ -101,19 +101,19 @@ void ANN::train(const ImageArray &images, const LabelArray &labels, int epoch, f
 
 LabelArray ANN::test(const ImageArray &images) {
 	LabelArray prediction(category_count);
-	prediction.alloc(images.count());
+	prediction.alloc(images.length());
 
 	float** output = new float* [layer_count + 1];
-	output[0] = init_mem(layer[0]->icrow * layer[0]->iccol * layer[0]->idepth * images.count());
+	output[0] = init_mem(layer[0]->icrow * layer[0]->iccol * layer[0]->idepth * images.length());
 	for (int i = 0; i < layer_count; i++)
-		output[i + 1] = init_mem(layer[i]->ocrow * layer[i]->occol * layer[i]->odepth * images.count());
+		output[i + 1] = init_mem(layer[i]->ocrow * layer[i]->occol * layer[i]->odepth * images.length());
 
-	copy_mem(images.get_data(0), output[0], 0, images.count(), images.item_size(), 0);
+	copy_mem(images.get_data(0), output[0], 0, images.length(), images.item_size(), 0);
 
 	for (int i = 0; i < layer_count; i++)
-		layer[i]->test(output[i], output[i + 1], images.count());
+		layer[i]->test(output[i], output[i + 1], images.length());
 
-	copy_mem(output[layer_count], prediction.data, 0, images.count(), category_count, 0);
+	copy_mem(output[layer_count], prediction.data, 0, images.length(), category_count, 0);
 	
 	for (int i = 0; i < layer_count + 1; i++)
 		delete[] output[i];

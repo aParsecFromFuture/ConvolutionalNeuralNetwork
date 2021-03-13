@@ -15,7 +15,7 @@ public:
 	void load_from(const char*);
 	void alloc(int);
 	int item_size() const;
-	int count() const;
+	int length() const;
 	float* get_data(int) const;
 	float* raw();
 	static void batch_normalization(ImageArray&, ImageArray&);

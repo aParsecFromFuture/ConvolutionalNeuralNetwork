@@ -15,7 +15,7 @@ public:
 	int* simplify();
 	float* get_data(int) const;
 	float* raw();
-	int get_category_count() const;
-	int get_label_count() const;
+	int item_size() const;
+	int length() const;
 	friend class ANN;
 };

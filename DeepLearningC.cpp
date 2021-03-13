@@ -46,7 +46,7 @@ int main() {
     int* numbers = test_labels.simplify();
     int* prediction = model.test(test_images).simplify();
 
-    for (int i = 0; i < test_labels.get_label_count(); i++)
+    for (int i = 0; i < test_labels.length(); i++)
         printf("num : %d \t pred : %d\n", numbers[i], prediction[i]);
     
     model.save_to("my_model.txt");

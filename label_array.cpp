@@ -13,7 +13,7 @@ LabelArray::~LabelArray() {
 
 void LabelArray::load_from(const char* file_path) {
 	std::ifstream file(file_path, std::ios::binary);
-	int tmp, count = 0;
+	int tmp;
 	int* tmp_data;
 
 	if (!file.is_open()) {
@@ -21,8 +21,9 @@ void LabelArray::load_from(const char* file_path) {
 		exit(1);
 	}
 
+	label_count = 0;
 	while (file.read(reinterpret_cast<char*>(&tmp), sizeof(int)))
-		count++;
+		label_count++;
 
 	file.clear();
 	file.seekg(0);
@@ -30,16 +31,14 @@ void LabelArray::load_from(const char* file_path) {
 	if (data)
 		delete[] data;
 
-	tmp_data = new int[count];
-	data = new float[count * category_count];
+	tmp_data = new int[label_count];
+	data = new float[label_count * category_count];
 
-	file.read(reinterpret_cast<char*>(tmp_data), sizeof(int) * count);
+	file.read(reinterpret_cast<char*>(tmp_data), sizeof(int) * label_count);
 	file.close();
 
-	label_count = count / category_count;
-
 	int k = 0;
-	for (int i = 0; i < count; i++)
+	for (int i = 0; i < label_count; i++)
 		for (int j = 0; j < category_count; j++)
 			data[k++] = (j == tmp_data[i] - 1) ? 1.0f : 0.0f;
 
@@ -84,9 +83,9 @@ float* LabelArray::raw() {
 	return data;
 }
 
-int LabelArray::get_category_count() const {
+int LabelArray::item_size() const {
 	return category_count;
 }
-int LabelArray::get_label_count() const {
+int LabelArray::length() const {
 	return label_count;
 }

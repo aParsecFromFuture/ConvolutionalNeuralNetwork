@@ -55,7 +55,7 @@ int ImageArray::item_size() const {
 	return width * height * channel;
 }
 
-int ImageArray::count() const {
+int ImageArray::length() const {
 	return image_count;
 }
 
