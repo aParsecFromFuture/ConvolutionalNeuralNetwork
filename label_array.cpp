@@ -13,8 +13,7 @@ LabelArray::~LabelArray() {
 
 void LabelArray::load_from(const char* file_path) {
 	std::ifstream file(file_path, std::ios::binary);
-	int tmp;
-	int* tmp_data;
+	int tmp, * tmp_data;
 
 	if (!file.is_open()) {
 		printf("The file \"%s\" couldn't open\n", file_path);
